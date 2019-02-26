@@ -28,11 +28,12 @@ class User extends CI_Controller {
 			);
 
 			$res = $this->skripsi->createUser($send_array);
-			echo $res;
-			return;
+			//echo $res;
+			return redirect(site_url('user/login'));
 		}
 		if($_SERVER['REQUEST_METHOD'] === 'GET'){
-			return $this->load->view('formuser',$data);
+			$this->data['title'] = "Log In";
+			return $this->load->view('formuser',$this->data);
 		}
 	}
 
@@ -50,6 +51,10 @@ class User extends CI_Controller {
 			$res = $this->skripsi->loginUser($send_array);
 			echo $res;
 			return;
+		}
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$this->data['title'] = "Log In";
+			return $this->load->view('formlogin',$this->data);
 		}
 	}
 
