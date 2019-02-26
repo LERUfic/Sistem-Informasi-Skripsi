@@ -31,7 +31,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
   <script src="<?php echo base_url('assets/semantic/components/form.js'); ?>"></script>
   <script src="<?php echo base_url('assets/semantic/components/transition.js'); ?>"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function () {
+      window.setTimeout(function(){
+        window.location.href = "<?php echo base_url($rdr) ?>";
+      }, 1000);
+    });
+  </script>
   <style type="text/css">
     body {
       background-color: #DADADA;
@@ -46,115 +52,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       max-width: 450px;
     }
   </style>
-  <script>
-  $(document)
-    .ready(function() {
-      $('.ui.form')
-        .form({
-          fields: {
-            nrp: {
-              identifier  : 'nrp',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your nrp'
-                }
-              ]
-            },
-            nama: {
-              identifier  : 'nama',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your nama'
-                }
-              ]
-            },
-            email: {
-              identifier  : 'email',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your e-mail'
-                },
-                {
-                  type   : 'email',
-                  prompt : 'Please enter a valid e-mail'
-                }
-              ]
-            },
-            password: {
-              identifier  : 'password',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your password'
-                },
-                {
-                  type   : 'length[6]',
-                  prompt : 'Your password must be at least 6 characters'
-                }
-              ]
-            }
-          }
-        })
-      ;
-    })
-  ;
-  </script>
 </head>
 <body>
 
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui teal image header">
-      <img src="<?php echo base_url('assets/images/login.ico'); ?>" class="image">
       <div class="content">
-        Create New Account
+        <div class="row">
+          Selamat Datang&nbsp;&nbsp;<u><?php echo $login_data['nama']; ?></u>
+        </div>
+        <div class="row">
+          <?php echo $login_data['nrp']; ?>
+        </div>
+        <div class="row">
+          <a href="<?php echo base_url('user/logout')?>" class="ui fluid large teal submit button">Logout</a>
+        </div>
       </div>
     </h2>
-    <form class="ui large form" method="POST" action="<?php echo base_url('user/daftar') ?>">
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="nrp" placeholder="NRP">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="nama" placeholder="Nama">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-Mail">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="pass" placeholder="Password">
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="role" placeholder="Role">
-          </div>
-        </div>
-        <div class="ui fluid large teal submit button">Create</div>
-      </div>
-
-      <div class="ui error message"></div>
-
-    </form>
-
-    <div class="ui message">
-      have an account? <a href="<?php echo base_url('user/daftar'); ?>">Log In</a>
-    </div>
   </div>
 </div>
 

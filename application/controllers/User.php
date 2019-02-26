@@ -22,14 +22,18 @@ class User extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$send_array = array(
 				'nrp' => $this->input->post('nrp'),
+				'nama' => $this->input->post('nama'),
 				'email' => $this->input->post('email'),
 				'pass' => md5($this->input->post('pass')),
 				'role' => $this->input->post('role')
 			);
 
 			$res = $this->skripsi->createUser($send_array);
-			//echo $res;
-			return redirect(site_url('user/login'));
+			$this->data['title'] = "Result";
+			$this->data['msg'] = "User Berhasil Dibuat";
+			$this->data['rdr'] = "user/login";
+			return $this->load->view('status',$this->data);
+			// return redirect(site_url('user/login'));
 		}
 		if($_SERVER['REQUEST_METHOD'] === 'GET'){
 			$this->data['title'] = "Log In";
@@ -40,8 +44,10 @@ class User extends CI_Controller {
 	public function login()
 	{
 		if(isset($this->login_data) && $this->login_data != NULL){
-			echo "Anda Sudah Login";
-			return;
+			$this->data['title'] = "Result";
+			$this->data['msg'] = "Anda Sudah Login";
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
 		}
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$send_array = array(
@@ -49,8 +55,11 @@ class User extends CI_Controller {
 				'pass' => md5($this->input->post('pass'))
 			);
 			$res = $this->skripsi->loginUser($send_array);
-			echo $res;
-			return;
+
+			$this->data['title'] = "Result";
+			$this->data['msg'] = $res;
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
 		}
 		if($_SERVER['REQUEST_METHOD'] === 'GET'){
 			$this->data['title'] = "Log In";
@@ -62,8 +71,10 @@ class User extends CI_Controller {
 	{
 		if(isset($this->login_data) && $this->login_data != NULL){
 			$this->session->unset_userdata('login_data');
-			echo "Logout Berhasil";
-			return;
+			$this->data['title'] = "Result";
+			$this->data['msg'] = "Logout Berhasil";
+			$this->data['rdr'] = "user/login";
+			return $this->load->view('status',$this->data);
 		}
 	}
 
