@@ -12,7 +12,7 @@ class Skripsi extends CI_Model {
     }
 
     public function createUser($data){
-    	$this->db->select('*');
+    	$this->db->select('1');
 		$this->db->from('tb_user');
     	$this->db->where('nrp',$data['nrp']);
     	$ret = $this->db->get()->result_array();
@@ -35,7 +35,7 @@ class Skripsi extends CI_Model {
     }
 
     public function loginUser($data){
-    	$this->db->select('*');
+    	$this->db->select('id,nrp,nama,email,role');
 		$this->db->from('tb_user');
     	$this->db->where('nrp',$data['nrp']);
     	$this->db->where('pass',$data['pass']);
