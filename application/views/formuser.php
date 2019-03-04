@@ -105,10 +105,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $('#rmkx').dropdown();
       $('#rolex').dropdown({
         onChange: function(value, text, $selectedItem) {
-          if(value != 5){
+          console.log(value);
+          if(value == 3 || value == 4){
             $('#rmk').show();
           }
-          if(value == 5){
+          else{
             $('#rmk').hide();
             $('#rmkx').dropdown('clear');
           }
@@ -161,14 +162,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="menu">
               <div class="item" data-value="1">Administrator</div>
               <div class="item" data-value="2">Kepala Prodi</div>
-              <div class="item" data-value="3">RMK</div>
+              <div class="item" data-value="3">Verifikator RMK</div>
               <div class="item" data-value="4">Dosen</div>
               <div class="item" data-value="5">Mahasiswa</div>
             </div>
           </div>
         </div>
         <div id="rmk" class="field">
-          <select id="rmkx" class="ui fluid search dropdown" multiple="" name="rmk">
+          <select id="rmkx" class="ui fluid search dropdown" multiple="" name="rmk[]">
             <option value="">RMK</option>
             <option value="1">RPL</option>
             <option value="2">NCC</option>
