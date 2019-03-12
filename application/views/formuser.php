@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <!-- Site Properties -->
   <title><?php echo $title ?></title>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/semantic/semantic.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/semantic/components/reset.css'); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/semantic/components/site.css'); ?>">
 
@@ -29,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/semantic/components/icon.css'); ?>"">
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
+  <script src="<?php echo base_url('assets/semantic/semantic.js'); ?>"></script>
   <script src="<?php echo base_url('assets/semantic/components/form.js'); ?>"></script>
   <script src="<?php echo base_url('assets/semantic/components/transition.js'); ?>"></script>
 
@@ -47,8 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
   </style>
   <script>
-  $(document)
-    .ready(function() {
+  $(document).ready(function() {
+    $('#rmk').hide();
       $('.ui.form')
         .form({
           fields: {
@@ -97,10 +99,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               ]
             }
           }
-        })
-      ;
-    })
-  ;
+        });
+
+      $('#rolex').dropdown();
+      $('#rmkx').dropdown();
+      $('#rolex').dropdown({
+        onChange: function(value, text, $selectedItem) {
+          console.log(value);
+          if(value == 3 || value == 4){
+            $('#rmk').show();
+          }
+          else{
+            $('#rmk').hide();
+            $('#rmkx').dropdown('clear');
+          }
+        }
+    });
+    });
   </script>
 </head>
 <body>
@@ -123,13 +138,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="address card icon"></i>
             <input type="text" name="nama" placeholder="Nama">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="envelope icon"></i>
             <input type="text" name="email" placeholder="E-Mail">
           </div>
         </div>
@@ -140,10 +155,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
         </div>
         <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="role" placeholder="Role">
+          <div id="rolex" class="ui fluid search selection dropdown">
+            <input id="role" type="hidden" name="role">
+            <i class="dropdown icon"></i>
+            <div class="default text">Role</div>
+            <div class="menu">
+              <div class="item" data-value="1">Administrator</div>
+              <div class="item" data-value="2">Kepala Prodi</div>
+              <div class="item" data-value="3">Verifikator RMK</div>
+              <div class="item" data-value="4">Dosen</div>
+              <div class="item" data-value="5">Mahasiswa</div>
+            </div>
           </div>
+        </div>
+        <div id="rmk" class="field">
+          <select id="rmkx" class="ui fluid search dropdown" multiple="" name="rmk[]">
+            <option value="">RMK</option>
+            <option value="1">RPL</option>
+            <option value="2">NCC</option>
+            <option value="3">KCV</option>
+            <option value="4">AJK</option>
+            <option value="5">IGS</option>
+            <option value="6">ALPRO</option>
+            <option value="7">MI</option>
+            <option value="8">DTK</option>
+          </select>
         </div>
         <div class="ui fluid large teal submit button">Create</div>
       </div>

@@ -12,11 +12,13 @@ class Skripsi extends CI_Model {
     }
 
     public function createUser($data){
-    	$this->db->select('*');
+        //Check if user already exists
+    	$this->db->select('1');
 		$this->db->from('tb_user');
     	$this->db->where('nrp',$data['nrp']);
     	$ret = $this->db->get()->result_array();
 
+        //0 user
     	if(count($ret) == 0){
     		$this->db->trans_start();
     		$this->db->insert('tb_user', $data);
@@ -34,13 +36,50 @@ class Skripsi extends CI_Model {
     	}
     }
 
+    public function insertRMK($data){
+        //Check if user already exists
+        $this->db->select('1');
+        $this->db->from('tb_user');
+        $this->db->where('nrp',$data['iduser']);
+        $ret = $this->db->get()->result_array();
+
+        //1 User
+        if(count($ret) == 1){
+            //Check if user with rmk exists
+            $this->db->select('1');
+            $this->db->from('user_rmk');
+            $this->db->where('iduser',$data['iduser']);
+            $this->db->where('idrmk',$data['idrmk']);
+            $ret2 = $this->db->get()->result_array();
+
+            //0 data
+            if(count($ret2) == 0){
+                $this->db->trans_start();
+                $this->db->insert('user_rmk', $data);
+                $this->db->trans_complete();
+
+                if ($this->db->trans_status() === FALSE) {
+                    return "Gagal Melakukan Insert";
+                }
+                else{
+                    return "Berhasil Insert RMK";
+                }    
+            }
+        }
+        else{
+            return "User Belum Ada";
+        }
+    }
+
     public function loginUser($data){
-    	$this->db->select('*');
+        //Check user with nrp and pass
+    	$this->db->select('nrp,nama,email,role');
 		$this->db->from('tb_user');
     	$this->db->where('nrp',$data['nrp']);
     	$this->db->where('pass',$data['pass']);
     	$ret = $this->db->get()->result_array();
 
+        //1 user
     	if(count($ret) == 1){
     		$this->session->set_userdata('login_data', $ret[0]);
     		return "Login Berhasil";
@@ -50,6 +89,15 @@ class Skripsi extends CI_Model {
     	}
     }
 
+    public function getRMK(){
+        //Get all rmk info
+        $this->db->select('id,srmk,lrmk');
+        $this->db->from('rmk');
+        $ret = $this->db->get()->result_array();
+
+        return $ret;
+
+    }
 }
 
 /* End of file skripsi.php */
