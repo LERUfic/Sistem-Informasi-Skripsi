@@ -11,8 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Site Properties -->
   <title><?php echo $title ?></title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/semanticui/dist/semantic.css'); ?>">
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css"/>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
   <script src="<?php echo base_url('assets/semanticui/dist/semantic.js'); ?>"></script>
   <script type="text/javascript">
     $(document).ready(function() {

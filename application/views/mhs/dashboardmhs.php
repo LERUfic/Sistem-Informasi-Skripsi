@@ -26,12 +26,12 @@
             Submit proposal TA untuk diajukan ke Dosen Pembimbing.
           </div>
         </div>
-        <div class="ui bottom attached button" style="background-color:teal;">
+        <a href=<?php echo base_url('mahasiswa/proposal'); ?> class="ui bottom attached button" style="background-color:teal;">
           <div style="color:white;">
             <i class="add icon"></i>
             Submit Proposal
           </div>
-        </div>
+        </a>
       </div>
       <div class="card">
         <div class="content">

@@ -16,31 +16,17 @@ class Beranda extends CI_Controller {
 
 	public function index()
 	{
-		
 		if(!isset($this->login_data) && $this->login_data == NULL){
 			return redirect(base_url('user/login'));
 		}
 		else{
 			$this->data['login_data'] = $this->session->userdata('login_data');
 			if($this->login_data['role']==5){
-				return redirect(base_url('beranda/mahasiswa'));
+				return redirect(base_url('mahasiswa/beranda'));
 			}
-			if($this->login_data['role']==1){
-				return redirect(base_url('beranda/mahasiswa'));
-			}
-		}
-		
-	}
-
-	public function mahasiswa()
-	{
-		if($this->login_data['role']==1){
-			$this->data['title'] = "Beranda Mahasiswa";
-			$this->load->view('headermhs',$this->data);
-			return $this->load->view('dashboardmhs',$this->data);	
-		}
-		else{
-			return redirect(base_url('beranda'));
+			// if($this->login_data['role']==1){
+			// 	return redirect(base_url('mahasiswa/beranda'));
+			// }
 		}
 		
 	}
