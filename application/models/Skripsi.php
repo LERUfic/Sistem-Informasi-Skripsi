@@ -96,7 +96,36 @@ class Skripsi extends CI_Model {
         $ret = $this->db->get()->result_array();
 
         return $ret;
+    }
 
+    public function getProposal($data){
+        $this->db->select('*');
+        $this->db->from('proposal');
+        $this->db->where('nrp',$data);
+        $ret = $this->db->get()->result_array();
+
+        return $ret;
+    }
+
+    public function getAllProposal(){
+        $this->db->select('*');
+        $this->db->from('proposal');
+        $ret = $this->db->get()->result_array();
+
+        return $ret;        
+    }
+
+    public function sendProposal($data){
+        $this->db->trans_start();
+        $this->db->insert('proposal', $data);
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            return "Gagal Melakukan Insert";
+        }
+        else{
+            return "Berhasil Insert Proposal";
+        }
     }
 }
 

@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $(document).ready(function () {
       window.setTimeout(function(){
         window.location.href = "<?php echo base_url($rdr) ?>";
-      }, 100000);
+      }, 2000);
     });
   </script>
   <style type="text/css">
