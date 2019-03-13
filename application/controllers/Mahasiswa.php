@@ -37,6 +37,15 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('mhs/headermhs',$this->data);
 		return $this->load->view('mhs/proposalmhs',$this->data);
 	}
+
+	public function edit()
+	{
+		$this->data['proposal'] = $this->skripsi->getProposal($this->login_data['nrp']);
+
+		$this->data['title'] = "Edit Proposal";
+		$this->load->view('mhs/headermhs',$this->data);
+		return $this->load->view('mhs/editProposalmhs',$this->data);
+	}
 	
 	private function _uploadTA()
 	{

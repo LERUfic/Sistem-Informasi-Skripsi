@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
   <div class="ui large top fixed menu transition visible" style="background-color: teal; display: flex !important;" ">
     <div class="ui container">
-      <a class="item" style="color:white;">Home</a>
+      <a href="<?php echo base_url('beranda'); ?>" class="item" style="color:white;">Home</a>
       <div class="ui simple dropdown item">
         <div style="color:white;">myTA</div>
         <i class="dropdown icon"></i>
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <i class="dropdown icon"></i>
           <div class="menu">
             <a class="item">Ubah Password</a>
-            <a href="<?php echo base_url('user/logout') ?>"class="item"><div style="color:red">Logout</div></a>
+            <a href="<?php echo base_url('user/logout'); ?>"class="item"><div style="color:red">Logout</div></a>
           </div>
         </div>
       </div>

@@ -12,12 +12,12 @@
             Melihat List Proposal Tugas Akhir Teman-teman mahasiswa dari berbagai RMK.
           </div>
         </div>
-        <div class="ui bottom attached button" style="background-color:teal;">
+        <a href=<?php echo base_url('mahasiswa/list'); ?> class="ui bottom attached button" style="background-color:teal;">
           <div style="color:white;">
             <i class="eye icon"></i>
             Lihat List
           </div>
-        </div>
+        </a>
       </div>
       <div class="card">
         <div class="content">
@@ -40,12 +40,12 @@
             Halaman status dan pengaturan data-data Proposal Tugas Akhir.
           </div>
         </div>
-        <div class="ui bottom attached button" style="background-color:teal;">
+        <a href=<?php echo base_url('mahasiswa/edit'); ?> class="ui bottom attached button" style="background-color:teal;">
           <div style="color:white;">
             <i class="sliders horizontal icon"></i>
             Manage Proposal
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

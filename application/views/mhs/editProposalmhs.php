@@ -3,13 +3,13 @@
   <div class="row"></div>
   <div class="row"></div>
   <div class="row">
-    <form class="ui large form" enctype="multipart/form-data" method="POST" action="<?php echo base_url('mahasiswa/ajukan') ?>">
-      <h4 class="ui dividing header">Submit Judul TA</h4>
+    <form class="ui large form" enctype="multipart/form-data" method="POST" action="<?php echo base_url('mahasiswa/ubah') ?>">
+      <h4 class="ui dividing header">Edit Data TA</h4>
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="judul" placeholder="Judul">
+            <input type="text" name="judul" placeholder="Judul" value="<?php echo $proposal[0]['judul']; ?>">
           </div>
         </div>
         <div class="field">
@@ -32,17 +32,18 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="dosbing1" placeholder="Dosen Pembimbing 1">
+            <input type="text" name="dosbing1" placeholder="Dosen Pembimbing 1" value="<?php echo $proposal[0]['dosbing1']; ?>">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="dosbing2" placeholder="Dosen Pembimbing 2">
+            <input type="text" name="dosbing2" placeholder="Dosen Pembimbing 2" value="<?php echo $proposal[0]['dosbing2']; ?>">
           </div>
         </div>
         <div class="field">
           <font style="color:red">Data berupa pdf!</font><br />
+          Jika tidak upload maka memakai yang <a href="<?php echo base_url('uploads/'.$proposal[0]['path']); ?>" target="_blank">lama</a>.
           <div class="ui left icon input">
             <i class="envelope icon"></i>
             <input name="draftTA" type="file" id="file">
@@ -62,7 +63,7 @@
 </body>
 <script>
   $(document).ready(function() {
-    $('#rmkx').dropdown();
+    $('#rmkx').dropdown('set selected',"1");
   });
   </script>
 
