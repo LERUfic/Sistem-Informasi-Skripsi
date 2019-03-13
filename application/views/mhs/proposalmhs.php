@@ -8,7 +8,7 @@
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="book icon"></i>
             <input type="text" name="judul" placeholder="Judul">
           </div>
         </div>
@@ -37,14 +37,14 @@
         </div>
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="user outline icon"></i>
             <input type="text" name="dosbing2" placeholder="Dosen Pembimbing 2">
           </div>
         </div>
         <div class="field">
           <font style="color:red">Data berupa pdf!</font><br />
           <div class="ui left icon input">
-            <i class="envelope icon"></i>
+            <i class="file pdf icon"></i>
             <input name="draftTA" type="file" id="file">
           </div>
         </div>

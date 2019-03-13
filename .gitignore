@@ -1,2 +1,6 @@
 
 uploads/
+
+application/config/database\.php
+
+\.DS_Store

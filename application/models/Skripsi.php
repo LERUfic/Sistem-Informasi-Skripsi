@@ -127,6 +127,20 @@ class Skripsi extends CI_Model {
             return "Berhasil Insert Proposal";
         }
     }
+
+    public function updateProposal($nrp,$data){
+        $this->db->trans_start();
+        $this->db->where('nrp',$nrp);
+        $this->db->update('proposal', $data);
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            return "Gagal Melakukan Update";
+        }
+        else{
+            return "Berhasil Update Proposal";
+        }
+    }
 }
 
 /* End of file skripsi.php */

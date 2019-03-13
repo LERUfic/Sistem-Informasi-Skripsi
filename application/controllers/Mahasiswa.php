@@ -46,6 +46,37 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('mhs/headermhs',$this->data);
 		return $this->load->view('mhs/editProposalmhs',$this->data);
 	}
+
+	public function ubah()
+	{
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$flag = $this->skripsi->getProposal($this->login_data['nrp']);
+			if(count($flag)==1){
+				if (empty($_FILES['draftTA']['name'])) {
+					$path = $flag[0]['path'];
+				}
+				else{
+					$path = $this->_uploadTA();	
+				}
+				
+				$send_array = Array(
+					'judul' => $this->input->post('judul'),
+					'dosbing1' => $this->input->post('dosbing1'),
+					'dosbing2' => $this->input->post('dosbing2'),
+					'rmk' => $this->input->post('rmk'),
+					'path' => $path
+				);
+				$ret = $this->skripsi->updateProposal($this->login_data['nrp'],$send_array);
+			}
+			else{
+				$ret = "Belum Submit Proposal";
+			}
+			$this->data['title'] = "Result";
+			$this->data['msg'] = $ret;
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
+	}
 	
 	private function _uploadTA()
 	{

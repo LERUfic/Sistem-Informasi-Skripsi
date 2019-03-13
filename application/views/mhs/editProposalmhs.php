@@ -8,7 +8,7 @@
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="book icon"></i>
             <input type="text" name="judul" placeholder="Judul" value="<?php echo $proposal[0]['judul']; ?>">
           </div>
         </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="field">
           <div class="ui left icon input">
-            <i class="user icon"></i>
+            <i class="user outline icon"></i>
             <input type="text" name="dosbing2" placeholder="Dosen Pembimbing 2" value="<?php echo $proposal[0]['dosbing2']; ?>">
           </div>
         </div>
@@ -45,7 +45,7 @@
           <font style="color:red">Data berupa pdf!</font><br />
           Jika tidak upload maka memakai yang <a href="<?php echo base_url('uploads/'.$proposal[0]['path']); ?>" target="_blank">lama</a>.
           <div class="ui left icon input">
-            <i class="envelope icon"></i>
+            <i class="file pdf icon"></i>
             <input name="draftTA" type="file" id="file">
           </div>
         </div>
@@ -63,7 +63,7 @@
 </body>
 <script>
   $(document).ready(function() {
-    $('#rmkx').dropdown('set selected',"1");
+    $('#rmkx').dropdown('set selected',"<?php echo $proposal[0]['rmk'] ?>");
   });
   </script>
 
