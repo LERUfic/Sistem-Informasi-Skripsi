@@ -21,6 +21,10 @@ class Beranda extends CI_Controller {
 		}
 		else{
 			$this->data['login_data'] = $this->session->userdata('login_data');
+			if($this->login_data['role']==3){
+				return redirect(base_url('verifikator/beranda'));
+			}
+			$this->data['login_data'] = $this->session->userdata('login_data');
 			if($this->login_data['role']==4){
 				return redirect(base_url('dosen/beranda'));
 			}

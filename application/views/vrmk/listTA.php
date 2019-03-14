@@ -49,7 +49,7 @@
     var table = $('#listTA').DataTable({
       "pageLength" : 5,
       "ajax": {
-            url : "<?php echo base_url("dosen/getListTA") ?>",
+            url : "<?php echo base_url("verifikator/getListTA") ?>",
             type : 'POST'
         },
       "columnDefs": [ {
@@ -75,7 +75,7 @@
 
     $('#ubahButton').click(function(){
       $.ajax({
-        url: "<?php echo base_url("dosen/ubahStatusTA") ?>",
+        url: "<?php echo base_url("verifikator/ubahStatusTA") ?>",
         method: "POST",
         data: {nrp: $(this).attr('data-value')}
       }).done(function(){

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dosen extends CI_Controller {
+class Verifikator extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -16,7 +16,7 @@ class Dosen extends CI_Controller {
 			$this->data['rdr'] = "beranda";
 			return $this->load->view('status',$this->data);
 		}
-		if($this->login_data['role'] != 4){
+		if($this->login_data['role'] != 3){
 			$this->data['title'] = "Access Denied";
 			$this->data['msg'] = "Access Denied";
 			$this->data['rdr'] = "beranda";
@@ -35,21 +35,28 @@ class Dosen extends CI_Controller {
 	public function beranda()
 	{
 		$this->data['title'] = "Beranda Dosen";
-		$this->load->view('dsn/headerdsn',$this->data);
-		return $this->load->view('dsn/dashboarddsn',$this->data);
+		$this->load->view('vrmk/headervrmk',$this->data);
+		return $this->load->view('vrmk/dashboardvrmk',$this->data);
 	}
 
 	public function list()
 	{
 		$this->data['title'] = "List Proposal TA";
-		$this->load->view('dsn/headerdsn',$this->data);
-		return $this->load->view('dsn/listTA',$this->data);
+		$this->load->view('vrmk/headervrmk',$this->data);
+		return $this->load->view('vrmk/listTA',$this->data);
 	}
 
 	public function getListTA()
 	{
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
-			$list_data = $this->skripsi->getAllProposal();
+			$myRMK = $this->skripsi->getRMKByNRP($this->login_data['nrp']);
+			$list_data = Array();
+			for($i=0;$i<count($myRMK);$i++){
+				$temp = $this->skripsi->getProposalByRMK($myRMK[$i]['idrmk']);
+				if(count($temp)==1){
+					array_push($list_data,$temp[0]);
+				}
+			}
 			$draw = intval($this->input->get("draw"));
 
 			$data = array();
@@ -87,46 +94,24 @@ class Dosen extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$data = $this->skripsi->getProposal($this->input->post('nrp'));
 			$current_status = $data[0]['idstat'];
-			$myID = $this->login_data['nrp'];
-
-			if($current_status == 10){
-				if($myID == $data[0]['dosbing1_nrp']){
-					$perubahan = '11';
-				}
-				elseif($myID == $data[0]['dosbing2_nrp']){
-					$perubahan = '12';
-				}
-				else{
-					$perubahan = 'TETAP';
+			$myRole = $this->login_data['role'];
+			$myRMK = $this->skripsi->getRMKByNRP($this->login_data['nrp']);
+			$flag = 0;
+			for($i=0;$i<count($myRMK);$i++){
+				if($data[0]['rmk'] == $myRMK[$i]['idrmk']){
+					$flag = 1;
+					break;
 				}
 			}
-			elseif($current_status == 11){
-				if($myID == $data[0]['dosbing1_nrp']){
-					$perubahan = 'TETAP';
+			if($flag){
+				if($current_status == 13){
+					if($myRole == 3){
+						$perubahan = '14';
+					}
 				}
-				elseif($myID == $data[0]['dosbing2_nrp']){
-					$perubahan = '13';
-				}
-				else{
-					$perubahan = 'TETAP';
-				}	
-			}
-			elseif($current_status == 12){
-				if($myID == $data[0]['dosbing1_nrp']){
-					$perubahan = '13';
-				}
-				elseif($myID == $data[0]['dosbing2_nrp']){
-					$perubahan = 'TETAP';
-				}
-				else{
-					$perubahan = 'TETAP';
-				}	
-			}
-			else{
-				$perubahan = 'TETAP';
 			}
 
-			if($perubahan!='TETAP'){
+			if($current_status == 13 && $perubahan=='14'){
 				$send_array = Array(
 					'idstat' => $perubahan
 				);
@@ -137,5 +122,5 @@ class Dosen extends CI_Controller {
 
 }
 
-/* End of file Dosen.php */
-/* Location: ./application/controllers/Dosen.php */
+/* End of file Verifikator.php */
+/* Location: ./application/controllers/Verifikator.php */
