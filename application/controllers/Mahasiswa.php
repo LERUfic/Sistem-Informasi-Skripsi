@@ -10,7 +10,13 @@ class Mahasiswa extends CI_Controller {
 		$this->load->helper('url');
 		$this->data = array();
 		$this->login_data = $this->session->userdata('login_data');
-		if(!isset($this->login_data) && $this->login_data == NULL && $this->login_data['role'] != 5){
+		if(!isset($this->login_data) && $this->login_data == NULL){
+			$this->data['title'] = "Access Denied";
+			$this->data['msg'] = "Access Denied";
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
+		if($this->login_data['role'] != 5){
 			$this->data['title'] = "Access Denied";
 			$this->data['msg'] = "Access Denied";
 			$this->data['rdr'] = "beranda";
@@ -20,7 +26,10 @@ class Mahasiswa extends CI_Controller {
 
 	public function index()
 	{
-		//	
+		$this->data['title'] = "Redirect";
+		$this->data['msg'] = "Dialihkan ke Beranda";
+		$this->data['rdr'] = "beranda";
+		return $this->load->view('status',$this->data);
 	}
 
 	public function beranda()
@@ -147,29 +156,37 @@ class Mahasiswa extends CI_Controller {
 
 	public function getListTA()
 	{
-		$list_data = $this->skripsi->getAllProposal();
-		$draw = intval($this->input->get("draw"));
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$list_data = $this->skripsi->getAllProposal();
+			$draw = intval($this->input->get("draw"));
 
-		$data = array();
-          foreach($list_data as $r) {
-               $data[] = array(
-                    $r['nrp'],
-                    $r['judul'],
-                    $r['dosbing1_nama'],
-                    $r['dosbing2_nama'],
-                    $r['lrmk']
-               );
-          }
-		$start = intval($this->input->get("start"));
-        $length = intval($this->input->get("length"));
-		$output = array(
-			"draw" => $draw,
-			"recordsTotal" => count($list_data),
-		   	"recordsFiltered" => count($list_data),
-		   	"data" => $data
-		);
-		echo json_encode($output);
-		exit();
+			$data = array();
+	          foreach($list_data as $r) {
+	               $data[] = array(
+	                    $r['nrp'],
+	                    $r['judul'],
+	                    $r['dosbing1_nama'],
+	                    $r['dosbing2_nama'],
+	                    $r['lrmk']
+	               );
+	          }
+			$start = intval($this->input->get("start"));
+	        $length = intval($this->input->get("length"));
+			$output = array(
+				"draw" => $draw,
+				"recordsTotal" => count($list_data),
+			   	"recordsFiltered" => count($list_data),
+			   	"data" => $data
+			);
+			echo json_encode($output);
+			exit();
+		}
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$this->data['title'] = "Access Denied";
+			$this->data['msg'] = "Access Denied";
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
 	}
 
 	public function info()

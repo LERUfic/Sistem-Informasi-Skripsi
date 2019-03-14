@@ -32,7 +32,7 @@
       "pageLength" : 5,
       "ajax": {
             url : "<?php echo base_url("mahasiswa/getListTA") ?>",
-            type : 'GET'
+            type : 'POST'
         },
     });
 } );

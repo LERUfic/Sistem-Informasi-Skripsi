@@ -16,3 +16,9 @@ status:
 - 30 = Menunggu Sidang Tugas Akhir
 - 31 = Selesai Sidang Tugas Akhir
 - 32 = Mahasiswa Dinyatakan Lulus
+
+Target:
+- Kamis selesai ubah status proposal oleh dosen pembimbing
+- Jumat selesai ubah status proposal rmk dan kaprodi
+- Sabtu Buat form mahasiswa dan penyetujuan oleh desen pembimbing
+- Minggu penyetujuan oleh kaprodi dan pengubahan ke menunggu sidang tugas akhir oleh kaprodi pengubahan status oleh dosen pembimbing
