@@ -7,7 +7,7 @@ status:
 - [x] 12 = Disetujui Dosen Pembimbing 2
 - [x] 13 = Disetujui Oleh Semua Dosen Pembimbing
 - [x] 14 = Disetujui Oleh Tim RMK
-- [ ] 15 = Disetujui Oleh Kaprodi
+- [x] 15 = Disetujui Oleh Kaprodi
 - [ ] 20 = Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa
 - [ ] 21 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1
 - [ ] 22 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2
