@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div style="color:white;">myTA</div>
         <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item">Informasi TA</a>
+          <a href="<?php echo base_url('mahasiswa/info'); ?>" class="item">Informasi TA</a>
           <a href="<?php echo base_url('mahasiswa/list'); ?>" class="item">List Proposal TA</a>
           <a href="<?php echo base_url('mahasiswa/proposal'); ?>" class="item">Submit Proposal TA</a>
           <a href="<?php echo base_url('mahasiswa/edit'); ?>" class="item">Manage Proposal TA</a>

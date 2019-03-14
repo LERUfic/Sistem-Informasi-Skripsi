@@ -57,7 +57,7 @@ class Mahasiswa extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$flag = $this->skripsi->getProposal($this->login_data['nrp']);
 			if(count($flag)==1){
-				if($flag[0]['idstat'] == 10 || $flag[0]['idstat'] == 11 || $flag[0]['idstat'] == 112){
+				if($flag[0]['idstat'] == 10 || $flag[0]['idstat'] == 11 || $flag[0]['idstat'] == 12){
 					if (empty($_FILES['draftTA']['name'])) {
 						$path = $flag[0]['path'];
 					}
@@ -123,7 +123,7 @@ class Mahasiswa extends CI_Controller {
 					'dosbing1' => $this->input->post('dosbing1'),
 					'dosbing2' => $this->input->post('dosbing2'),
 					'rmk' => $this->input->post('rmk'),
-					'path' => $path
+					'path' => $path,
 					'idstat' => '10'
 				);
 				$ret = $this->skripsi->sendProposal($send_array);
@@ -155,9 +155,9 @@ class Mahasiswa extends CI_Controller {
                $data[] = array(
                     $r['nrp'],
                     $r['judul'],
-                    $r['dosbing1'],
-                    $r['dosbing2'],
-                    $r['rmk']
+                    $r['dosbing1_nama'],
+                    $r['dosbing2_nama'],
+                    $r['lrmk']
                );
           }
 		$start = intval($this->input->get("start"));
@@ -172,6 +172,19 @@ class Mahasiswa extends CI_Controller {
 		exit();
 	}
 
+	public function info()
+	{
+		$this->data['proposal'] = $this->skripsi->getProposal($this->login_data['nrp']);
+		if(count($this->data['proposal'])==0){
+			$this->data['title'] = "Error";
+			$this->data['msg'] = "Mahasiswa Belum Upload Proposal";
+			$this->data['rdr'] = "mahasiswa/proposal";
+			return $this->load->view('status',$this->data);
+		}
+		$this->data['title'] = "Info Proposal TA";
+		$this->load->view('mhs/headermhs',$this->data);
+		return $this->load->view('mhs/infoProposalmhs',$this->data);
+	}
 }
 
 /* End of file Mahasiswa.php */

@@ -99,17 +99,25 @@ class Skripsi extends CI_Model {
     }
 
     public function getProposal($data){
-        $this->db->select('*');
+        $this->db->select("proposal.nrp,proposal.judul,proposal.dosbing1 as 'dosbing1_nrp',proposal.dosbing2 as 'dosbing2_nrp',proposal.rmk,proposal.path,proposal.idstat,rmk.srmk,rmk.lrmk,status_proposal.textstat, dosbing_1.nama as 'dosbing1_nama',dosbing_2.nama as 'dosbing2_nama'");
         $this->db->from('proposal');
-        $this->db->where('nrp',$data);
+        $this->db->join('rmk','rmk.id=proposal.rmk');
+        $this->db->join('status_proposal','status_proposal.idstat=proposal.idstat');
+        $this->db->join('tb_user as dosbing_1','dosbing_1.nrp=proposal.dosbing1');
+        $this->db->join('tb_user as dosbing_2 ','dosbing_2.nrp=proposal.dosbing2');
+        $this->db->where('proposal.nrp',$data);
         $ret = $this->db->get()->result_array();
 
         return $ret;
     }
 
     public function getAllProposal(){
-        $this->db->select('*');
+        $this->db->select("proposal.nrp,proposal.judul,proposal.dosbing1 as 'dosbing1_nrp',proposal.dosbing2 as 'dosbing2_nrp',proposal.rmk,proposal.path,proposal.idstat,rmk.srmk,rmk.lrmk,status_proposal.textstat, dosbing_1.nama as 'dosbing1_nama',dosbing_2.nama as 'dosbing2_nama'");
         $this->db->from('proposal');
+        $this->db->join('rmk','rmk.id=proposal.rmk');
+        $this->db->join('status_proposal','status_proposal.idstat=proposal.idstat');
+        $this->db->join('tb_user as dosbing_1','dosbing_1.nrp=proposal.dosbing1');
+        $this->db->join('tb_user as dosbing_2 ','dosbing_2.nrp=proposal.dosbing2');
         $ret = $this->db->get()->result_array();
 
         return $ret;        

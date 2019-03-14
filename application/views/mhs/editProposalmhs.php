@@ -32,13 +32,13 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="dosbing1" placeholder="Dosen Pembimbing 1" value="<?php echo $proposal[0]['dosbing1']; ?>">
+            <input type="text" name="dosbing1" placeholder="Dosen Pembimbing 1" value="<?php echo $proposal[0]['dosbing1_nrp']; ?>">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="user outline icon"></i>
-            <input type="text" name="dosbing2" placeholder="Dosen Pembimbing 2" value="<?php echo $proposal[0]['dosbing2']; ?>">
+            <input type="text" name="dosbing2" placeholder="Dosen Pembimbing 2" value="<?php echo $proposal[0]['dosbing2_nrp']; ?>">
           </div>
         </div>
         <div class="field">
