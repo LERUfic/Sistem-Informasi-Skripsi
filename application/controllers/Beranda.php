@@ -21,12 +21,12 @@ class Beranda extends CI_Controller {
 		}
 		else{
 			$this->data['login_data'] = $this->session->userdata('login_data');
+			if($this->login_data['role']==4){
+				return redirect(base_url('dosen/beranda'));
+			}
 			if($this->login_data['role']==5){
 				return redirect(base_url('mahasiswa/beranda'));
 			}
-			// if($this->login_data['role']==1){
-			// 	return redirect(base_url('mahasiswa/beranda'));
-			// }
 		}
 		
 	}
