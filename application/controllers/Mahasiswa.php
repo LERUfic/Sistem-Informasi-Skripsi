@@ -260,6 +260,67 @@ class Mahasiswa extends CI_Controller {
 			return $this->load->view('status',$this->data);
 		}
 	}
+
+	public function change()
+	{
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$flag = $this->skripsi->getSeminar($this->login_data['nrp']);
+			if(count($flag)==0){
+				$this->data['title'] = "Error";
+				$this->data['msg'] = "Mahasiswa Belum Submit Jadwal Seminar";
+				$this->data['rdr'] = "mahasiswa/seminar";
+				return $this->load->view('status',$this->data);
+			}
+			$this->data['seminar'] = $flag;
+			$this->data['title'] = "Edit Jadwal Seminar";
+			$this->load->view('mhs/headermhs',$this->data);
+			return $this->load->view('mhs/editSeminarmhs',$this->data);
+		}
+
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$flag = $this->skripsi->getseminar($this->login_data['nrp']);
+			if(count($flag)==1){
+				if($flag[0]['idstat'] == 20 || $flag[0]['idstat'] == 21 || $flag[0]['idstat'] == 22){
+					$send_array = Array(
+						'tema' => $this->input->post('tema'),
+						'd_mulai' => $this->input->post('d_mulai'),
+						'd_selesai' => $this->input->post('d_selesai'),
+						'idstat' => $flag[0]['idstat'],
+						'tempat' => $this->input->post('tempat')
+					);
+					$ret = $this->skripsi->updateSeminar($this->login_data['nrp'],$send_array);	
+				}
+				else{
+					$this->data['title'] = "Error";
+					$this->data['msg'] = "Tidak Bisa Dirubah! Seminar Sudah Disetujui.";
+					$this->data['rdr'] = "beranda";
+					return $this->load->view('status',$this->data);		
+				}
+				
+			}
+			else{
+				$ret = "Belum Submit Jadwal Seminar";
+			}
+			$this->data['title'] = "Result";
+			$this->data['msg'] = $ret;
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
+	}
+
+	public function jadwal()
+	{
+		$this->data['seminar'] = $this->skripsi->getSeminar($this->login_data['nrp']);
+		if(count($this->data['seminar'])==0){
+			$this->data['title'] = "Error";
+			$this->data['msg'] = "Mahasiswa Belum Submit Jadwal Seminar";
+			$this->data['rdr'] = "mahasiswa/seminar";
+			return $this->load->view('status',$this->data);
+		}
+		$this->data['title'] = "Info Seminar TA";
+		$this->load->view('mhs/headermhs',$this->data);
+		return $this->load->view('mhs/infoSeminarmhs',$this->data);
+	}
 }
 
 /* End of file Mahasiswa.php */

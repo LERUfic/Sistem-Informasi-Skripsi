@@ -49,10 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div style="color:white;">Seminar</div>
         <i class="dropdown icon"></i>
         <div class="menu">
-          <a href="<?php echo base_url('mahasiswa/info'); ?>" class="item">Informasi Seminar TA</a>
+          <a href="<?php echo base_url('mahasiswa/jadwal'); ?>" class="item">Informasi Seminar TA</a>
           <!-- <a href="<?php //echo base_url('mahasiswa/list'); ?>" class="item">List Proposal TA</a> -->
           <a href="<?php echo base_url('mahasiswa/seminar'); ?>" class="item">Submit Seminar TA</a>
-          <a href="<?php echo base_url('mahasiswa/edit'); ?>" class="item">Manage Seminar TA</a>
+          <a href="<?php echo base_url('mahasiswa/change'); ?>" class="item">Manage Seminar TA</a>
         </div>
       </div>
       <div class="right menu">

@@ -195,6 +195,20 @@ class Skripsi extends CI_Model {
 
         return $ret;
     }
+
+    public function updateSeminar($nrp,$data){
+        $this->db->trans_start();
+        $this->db->where('nrp',$nrp);
+        $this->db->update('seminar', $data);
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            return "Gagal Melakukan Update";
+        }
+        else{
+            return "Berhasil Update Seminar";
+        }
+    }
 }
 
 /* End of file skripsi.php */
