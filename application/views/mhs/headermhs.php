@@ -11,12 +11,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Site Properties -->
   <title><?php echo $title ?></title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/semanticui/dist/semantic.css'); ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/calendar/calendar.css'); ?>">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css"/>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
   <script src="<?php echo base_url('assets/semanticui/dist/semantic.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/calendar/calendar.min.js'); ?>"></script>
   <script type="text/javascript">
     $(document).ready(function() {
     });
@@ -41,6 +43,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a href="<?php echo base_url('mahasiswa/list'); ?>" class="item">List Proposal TA</a>
           <a href="<?php echo base_url('mahasiswa/proposal'); ?>" class="item">Submit Proposal TA</a>
           <a href="<?php echo base_url('mahasiswa/edit'); ?>" class="item">Manage Proposal TA</a>
+        </div>
+      </div>
+      <div class="ui simple dropdown item">
+        <div style="color:white;">Seminar</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a href="<?php echo base_url('mahasiswa/info'); ?>" class="item">Informasi Seminar TA</a>
+          <!-- <a href="<?php //echo base_url('mahasiswa/list'); ?>" class="item">List Proposal TA</a> -->
+          <a href="<?php echo base_url('mahasiswa/seminar'); ?>" class="item">Submit Seminar TA</a>
+          <a href="<?php echo base_url('mahasiswa/edit'); ?>" class="item">Manage Seminar TA</a>
         </div>
       </div>
       <div class="right menu">

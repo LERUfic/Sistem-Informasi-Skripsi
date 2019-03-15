@@ -8,7 +8,8 @@ status:
 - [x] 13 = Disetujui Oleh Semua Dosen Pembimbing
 - [x] 14 = Disetujui Oleh Tim RMK
 - [x] 15 = Disetujui Oleh Kaprodi
-- [ ] 20 = Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa
+- [x] 16 = Proses Melakukan Seminar
+- [x] 20 = Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa
 - [ ] 21 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1
 - [ ] 22 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2
 - [ ] 23 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Semua Dosen Pembimbing
@@ -18,7 +19,7 @@ status:
 - [ ] 32 = Mahasiswa Dinyatakan Lulus
 
 Target:
-- Kamis selesai ubah status proposal oleh dosen pembimbing
-- Jumat selesai ubah status proposal rmk dan kaprodi
+- ~~Kamis selesai ubah status proposal oleh dosen pembimbing~~
+- ~~Jumat selesai ubah status proposal rmk dan kaprodi~~
 - Sabtu Buat form mahasiswa dan penyetujuan oleh desen pembimbing
 - Minggu penyetujuan oleh kaprodi dan pengubahan ke menunggu sidang tugas akhir oleh kaprodi pengubahan status oleh dosen pembimbing

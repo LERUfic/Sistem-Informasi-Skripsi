@@ -172,6 +172,29 @@ class Skripsi extends CI_Model {
             return "Berhasil Update Proposal";
         }
     }
+
+    /* SEMINAR MODEL */
+    public function sendSeminar($data){
+        $this->db->trans_start();
+        $this->db->insert('seminar', $data);
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    public function getSeminar($data){
+        $this->db->select("seminar.tema,seminar.nrp,seminar.idstat,seminar.d_mulai,seminar.d_selesai,seminar.tempat,status_proposal.textstat");
+        $this->db->from('seminar');
+        $this->db->join('status_proposal','status_proposal.idstat=seminar.idstat');
+        $this->db->where('seminar.nrp',$data);
+        $ret = $this->db->get()->result_array();
+
+        return $ret;
+    }
 }
 
 /* End of file skripsi.php */

@@ -202,6 +202,64 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('mhs/headermhs',$this->data);
 		return $this->load->view('mhs/infoProposalmhs',$this->data);
 	}
+
+	/* SEMINAR Controller*/
+	public function seminar()
+	{
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$this->data['title'] = "Submit Jadwal Seminar";
+			$this->load->view('mhs/headermhs',$this->data);
+			return $this->load->view('mhs/seminarmhs',$this->data);
+		}
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$flag1 = $this->skripsi->getProposal($this->login_data['nrp']);
+			$flag2 = $this->skripsi->getSeminar($this->login_data['nrp']);
+			if(count($flag1)==1){
+				if($flag1[0]['idstat']==15){
+					if(count($flag2)==0){
+						$send_array = Array(
+							'nrp' => $this->login_data['nrp'],
+							'tema' => $this->input->post('tema'),
+							'd_mulai' => $this->input->post('d_mulai'),
+							'd_selesai' => $this->input->post('d_selesai'),
+							'idstat' => '20',
+							'tempat' => $this->input->post('tempat')
+						);
+						$res = $this->skripsi->sendSeminar($send_array);
+
+						if($res){
+							$send_array2 = Array(
+								'idstat' => '16'
+							);
+							$ret = $this->skripsi->updateProposal($flag1[0]['nrp'],$send_array2);
+							if($ret == "Berhasil Update Proposal"){
+								$ret = "Berhasil Insert Jadwal Seminar";
+							}
+							else{
+								$ret = "Gagal Update Status Proposal";	
+							}
+						}
+						else{
+							$ret = "Gagal Melakukan Insert";
+						}
+					}
+					else{
+						$ret = "User Sudah Submit Jadwal Seminar TA";
+					}
+				}
+				else{
+					$ret = "User Belum Mendapat Persetujuan Kedua Dosen Pembimbing";
+				}
+			}
+			else{
+				$ret = "User Belum Submit Proposal TA";
+			}
+			$this->data['title'] = "Result";
+			$this->data['msg'] = $ret;
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
+	}
 }
 
 /* End of file Mahasiswa.php */
