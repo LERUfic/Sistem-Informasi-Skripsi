@@ -108,7 +108,7 @@ class Mahasiswa extends CI_Controller {
 	    $config['allowed_types']        = 'pdf';
 	    $config['file_name']            = $this->login_data['nrp'];
 	    $config['overwrite']			= true;
-	    $config['max_size']             = 102400; // 10MB
+	    $config['max_size']             = 102400;
 
 	    $this->load->library('upload', $config);
 

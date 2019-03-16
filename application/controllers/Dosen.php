@@ -164,9 +164,6 @@ class Dosen extends CI_Controller {
 			        $r['textstat']
 			   	);
 			}
-			// print_r($xdata);
-			// print_r($list_seminar);
-			// return
 			$draw = intval($this->input->get("draw"));
 			$start = intval($this->input->get("start"));
 	        $length = intval($this->input->get("length"));
