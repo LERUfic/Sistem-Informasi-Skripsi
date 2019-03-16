@@ -146,6 +146,16 @@ class Skripsi extends CI_Model {
         return $ret;        
     }
 
+    public function getAllProposalByDosbing($data){
+        $this->db->select("proposal.nrp");
+        $this->db->from('proposal');
+        $this->db->where('proposal.dosbing1',$data);
+        $this->db->or_where('proposal.dosbing2',$data);
+        $ret = $this->db->get()->result_array();
+
+        return $ret;        
+    }
+
     public function sendProposal($data){
         $this->db->trans_start();
         $this->db->insert('proposal', $data);
@@ -208,6 +218,16 @@ class Skripsi extends CI_Model {
         else{
             return "Berhasil Update Seminar";
         }
+    }
+
+    public function getSeminarByNRP($data){
+        $this->db->select("seminar.tema,seminar.nrp,seminar.idstat,seminar.d_mulai,seminar.d_selesai,seminar.tempat,status_proposal.textstat");
+        $this->db->from('seminar');
+        $this->db->join('status_proposal','status_proposal.idstat=seminar.idstat');
+        $this->db->where_in('seminar.nrp',$data);
+        $ret = $this->db->get()->result_array();
+
+        return $ret;
     }
 }
 

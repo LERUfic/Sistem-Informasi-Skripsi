@@ -1,7 +1,8 @@
 # Pengajuan Skripsi
 Aplikasi yang mempermudah mahasiswa dan dosen dalam kegiatan pengajuan Tugas Akhir di departemen Informatika ITS.
 
-status:
+Status:
+===
 - [x] 10 = Pengajuan Oleh Mahasiswa
 - [x] 11 = Disetujui Dosen Pembimbing 1
 - [x] 12 = Disetujui Dosen Pembimbing 2
@@ -10,16 +11,21 @@ status:
 - [x] 15 = Disetujui Oleh Kaprodi
 - [x] 16 = Proses Melakukan Seminar
 - [x] 20 = Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa
-- [ ] 21 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1
-- [ ] 22 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2
-- [ ] 23 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Semua Dosen Pembimbing
+- [x] 21 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1
+- [x] 22 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2
+- [x] 23 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Semua Dosen Pembimbing
 - [ ] 24 = Menyetujui Hasil Akhir Seminar Proposal Tugas Akhir Oleh Kaprodi
-- [ ] 30 = Menunggu Sidang Tugas Akhir
-- [ ] 31 = Selesai Sidang Tugas Akhir
-- [ ] 32 = Mahasiswa Dinyatakan Lulus
+- [ ] 30 = Menunggu Sidang Tugas Akhir (otomatis kalau seminar stat 24)
+- [ ] 31 = Selesai Sidang Tugas Akhir (oleh verifikator rmk)
+- [ ] 32 = Mahasiswa Dinyatakan Lulus (oleh kaprodi) 
 
 Target:
+===
 - ~~Kamis selesai ubah status proposal oleh dosen pembimbing~~
 - ~~Jumat selesai ubah status proposal rmk dan kaprodi~~
-- Sabtu Buat form mahasiswa dan penyetujuan oleh desen pembimbing
+- ~~Sabtu Buat form mahasiswa dan penyetujuan oleh desen pembimbing~~
 - Minggu penyetujuan oleh kaprodi dan pengubahan ke menunggu sidang tugas akhir oleh kaprodi pengubahan status oleh dosen pembimbing
+
+Alur:
+===
+Mahasiswa mendaftar -> mahasiswa mengajukan proposal TA -> dosbing 1 dan 2 mengkonfirmasi proposal -> tim rmk mengkonfirmasi proposal -> kaprodi mengkonfirmasi proposal -> mahasiswa melakukan seminar (mahasiswa mengajukan jadwal seminar -> dosbing 1 dan 2 mengkonfirmasi jadwal -> mahasiswa melakukan seminar -> kaprodi menyetujui bahwa mahasiswa sudah melakukan seminar) -> Mahasiswa menunggu sidang tugas akhir -> mahasiswa melakukan sidang ta -> mahasiswa selesai sidang TA -> verifikator rmk menyatakan mahasiswa telah melakukan sidang TA -> kaprodi menyatakan mahasiswa lulus
