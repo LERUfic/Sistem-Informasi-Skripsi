@@ -21,6 +21,9 @@ class Beranda extends CI_Controller {
 		}
 		else{
 			$this->data['login_data'] = $this->session->userdata('login_data');
+			if($this->login_data['role']==1){
+				return redirect(base_url('user/logout'));
+			}
 			if($this->login_data['role']==2){
 				return redirect(base_url('kaprodi/beranda'));
 			}
