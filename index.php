@@ -163,9 +163,9 @@ switch (ENVIRONMENT)
 
 
 /*
- * -------------------------------------------------------------------
+ * --------------------------------------------------------------------
  *  CUSTOM CONFIG VALUES
- * -------------------------------------------------------------------
+ * --------------------------------------------------------------------
  *
  * The $assign_to_config array below will be passed dynamically to the
  * config class when initialized. This allows you to set custom config

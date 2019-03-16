@@ -1,5 +1,5 @@
 
-uploads/
+uploads/*.pdf
 
 application/config/database\.php
 

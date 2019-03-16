@@ -59,7 +59,6 @@ class User extends CI_Controller {
 			$this->data['msg'] = $res;
 			$this->data['rdr'] = "user/login";
 			return $this->load->view('status',$this->data);
-			// return redirect(site_url('user/login'));
 		}
 
 		//Method GET
