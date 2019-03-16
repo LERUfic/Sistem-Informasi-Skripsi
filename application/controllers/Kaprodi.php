@@ -102,6 +102,75 @@ class Kaprodi extends CI_Controller {
 			$ret = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array);
 		}
 	}
+
+	/* Seminar Controller */
+	public function jadwal(){
+		$this->data['title'] = "List Jadwal Seminar TA";
+		$this->load->view('kaprodi/headerkaprodi',$this->data);
+		return $this->load->view('kaprodi/listSeminar',$this->data);
+	}
+	
+	public function getListSeminar()
+	{
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+          	$list_seminar = $this->skripsi->getAllSeminar();
+			$xdata = array();
+			foreach($list_seminar as $r) {
+			   	$xdata[] = array(
+			        $r['nrp'],
+			        $r['tema'],
+			        $r['d_mulai'],
+			        $r['d_selesai'],
+			        $r['tempat'],
+			        $r['textstat']
+			   	);
+			}
+			$draw = intval($this->input->get("draw"));
+			$start = intval($this->input->get("start"));
+	        $length = intval($this->input->get("length"));
+			$output = array(
+				"draw" => $draw,
+				"recordsTotal" => count($list_seminar),
+			   	"recordsFiltered" => count($list_seminar),
+			   	"data" => $xdata
+			);
+			echo json_encode($output);
+			exit();
+		}
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$this->data['title'] = "Access Denied";
+			$this->data['msg'] = "Access Denied";
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
+	}
+
+	public function ubahStatusSeminar(){
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$data = $this->skripsi->getSeminar($this->input->post('nrp'));
+			$current_status = $data[0]['idstat'];
+			$myRole = $this->login_data['role'];
+			if($current_status == 23){
+				if($myRole == 2){
+					$perubahan = '24';
+				}
+			}
+		}
+
+		if($current_status == 23 && $perubahan=='24'){
+			$send_array = Array(
+				'idstat' => $perubahan
+			);
+			$ret = $this->skripsi->updateSeminar($this->input->post('nrp'),$send_array);
+		}
+
+		if($ret=="Berhasil Update Seminar"){
+			$send_array2 = Array(
+				'idstat' => 30
+			);
+			$res = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array2);
+		}
+	}
 }
 
 /* End of file Kaprodi.php */

@@ -229,6 +229,15 @@ class Skripsi extends CI_Model {
 
         return $ret;
     }
+
+    public function getAllSeminar(){
+        $this->db->select("seminar.tema,seminar.nrp,seminar.idstat,seminar.d_mulai,seminar.d_selesai,seminar.tempat,status_proposal.textstat");
+        $this->db->from('seminar');
+        $this->db->join('status_proposal','status_proposal.idstat=seminar.idstat');
+        $ret = $this->db->get()->result_array();
+
+        return $ret;
+    }
 }
 
 /* End of file skripsi.php */

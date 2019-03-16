@@ -14,8 +14,8 @@ Status:
 - [x] 21 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1
 - [x] 22 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2
 - [x] 23 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Semua Dosen Pembimbing
-- [ ] 24 = Menyetujui Hasil Akhir Seminar Proposal Tugas Akhir Oleh Kaprodi
-- [ ] 30 = Menunggu Sidang Tugas Akhir (otomatis kalau seminar stat 24)
+- [x] 24 = Menyetujui Hasil Akhir Seminar Proposal Tugas Akhir Oleh Kaprodi
+- [x] 30 = Menunggu Sidang Tugas Akhir (otomatis kalau seminar stat 24)
 - [ ] 31 = Selesai Sidang Tugas Akhir (oleh verifikator rmk)
 - [ ] 32 = Mahasiswa Dinyatakan Lulus (oleh kaprodi) 
 
@@ -24,7 +24,7 @@ Target:
 - ~~Kamis selesai ubah status proposal oleh dosen pembimbing~~
 - ~~Jumat selesai ubah status proposal rmk dan kaprodi~~
 - ~~Sabtu Buat form mahasiswa dan penyetujuan oleh desen pembimbing~~
-- Minggu penyetujuan oleh kaprodi dan pengubahan ke menunggu sidang tugas akhir oleh kaprodi pengubahan status oleh dosen pembimbing
+- Minggu sisanya
 
 Alur:
 ===

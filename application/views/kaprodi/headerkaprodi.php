@@ -40,6 +40,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a href="<?php echo base_url('kaprodi/list'); ?>" class="item">List Proposal TA</a>
         </div>
       </div>
+      <div class="ui simple dropdown item">
+        <div style="color:white;">Seminar</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a href="<?php echo base_url('kaprodi/jadwal'); ?>" class="item">List Jadwal Seminar</a>
+        </div>
+      </div>
       <div class="right menu">
         <div class="ui simple dropdown item">
           <div style="color:white;">My Account</div>

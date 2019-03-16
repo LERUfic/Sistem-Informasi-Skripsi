@@ -142,6 +142,7 @@ class Dosen extends CI_Controller {
 		$this->load->view('dsn/headerdsn',$this->data);
 		return $this->load->view('dsn/listSeminar',$this->data);
 	}
+
 	public function getListSeminar()
 	{
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -171,8 +172,8 @@ class Dosen extends CI_Controller {
 	        $length = intval($this->input->get("length"));
 			$output = array(
 				"draw" => $draw,
-				"recordsTotal" => count($list_data),
-			   	"recordsFiltered" => count($list_data),
+				"recordsTotal" => count($list_seminar),
+			   	"recordsFiltered" => count($list_seminar),
 			   	"data" => $xdata
 			);
 			echo json_encode($output);
