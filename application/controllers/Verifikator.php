@@ -109,9 +109,14 @@ class Verifikator extends CI_Controller {
 						$perubahan = '14';
 					}
 				}
+				if($current_status == 30){
+					if($myRole == 3){
+						$perubahan = '31';
+					}
+				}
 			}
 
-			if($current_status == 13 && $perubahan=='14'){
+			if($current_status == 13 || $current_status == 30){
 				$send_array = Array(
 					'idstat' => $perubahan
 				);

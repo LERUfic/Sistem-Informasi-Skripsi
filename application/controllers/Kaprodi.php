@@ -93,9 +93,14 @@ class Kaprodi extends CI_Controller {
 					$perubahan = '15';
 				}
 			}
+			elseif ($current_status == 31){
+				if($myRole == 2){
+					$perubahan = '32';
+				} 
+			}
 		}
 
-		if($current_status == 14 && $perubahan=='15'){
+		if($current_status == 14 || $current_status == 31){
 			$send_array = Array(
 				'idstat' => $perubahan
 			);
@@ -109,7 +114,7 @@ class Kaprodi extends CI_Controller {
 		$this->load->view('kaprodi/headerkaprodi',$this->data);
 		return $this->load->view('kaprodi/listSeminar',$this->data);
 	}
-	
+
 	public function getListSeminar()
 	{
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
