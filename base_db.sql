@@ -97,8 +97,38 @@ CREATE TABLE `rmk` (
 
 LOCK TABLES `rmk` WRITE;
 /*!40000 ALTER TABLE `rmk` DISABLE KEYS */;
-INSERT INTO `rmk` VALUES (1,'RPL','Rekayasa Perangkat Lunak'),(2,'KCV','Komputasi Cerdas dan Visi '),(3,'KBJ','Komputasi Berbasis Jaringan '),(4,'AJK','Arsitektur Jaringan dan Komputer'),(5,'IGS','Interaksi, Grafika dan Seni'),(6,'ALPRO','Algoritma Pemrograman'),(7,'MI','Manajemen Informasi'),(8,'DTK','Dasar dan Terapan Komputasi');
+INSERT INTO `rmk` VALUES (1,'RPL','Rekayasa Perangkat Lunak'),(2,'KBJ','Komputasi Berbasis Jaringan'),(3,'KCV','Komputasi Cerdas dan Visi'),(4,'AJK','Arsitektur Jaringan dan Komputer'),(5,'IGS','Interaksi, Grafika dan Seni'),(6,'ALPRO','Algoritma Pemrograman'),(7,'MI','Manajemen Informasi'),(8,'DTK','Dasar dan Terapan Komputasi');
 /*!40000 ALTER TABLE `rmk` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seminar`
+--
+
+DROP TABLE IF EXISTS `seminar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `seminar` (
+  `nrp` varchar(20) NOT NULL,
+  `tema` varchar(255) DEFAULT NULL,
+  `d_mulai` datetime DEFAULT NULL,
+  `d_selesai` datetime DEFAULT NULL,
+  `tempat` varchar(255) DEFAULT NULL,
+  `idstat` int(100) DEFAULT NULL,
+  PRIMARY KEY (`nrp`),
+  KEY `idstat` (`idstat`),
+  CONSTRAINT `seminar_ibfk_1` FOREIGN KEY (`idstat`) REFERENCES `status_proposal` (`idstat`),
+  CONSTRAINT `seminar_ibfk_2` FOREIGN KEY (`nrp`) REFERENCES `tb_user` (`nrp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `seminar`
+--
+
+LOCK TABLES `seminar` WRITE;
+/*!40000 ALTER TABLE `seminar` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seminar` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -121,7 +151,7 @@ CREATE TABLE `status_proposal` (
 
 LOCK TABLES `status_proposal` WRITE;
 /*!40000 ALTER TABLE `status_proposal` DISABLE KEYS */;
-INSERT INTO `status_proposal` VALUES (10,'Pengajuan Oleh Mahasiswa'),(11,'Disetujui Dosen Pembimbing 1'),(12,'Disetujui Dosen Pembimbing 2'),(13,'Disetujui Oleh Semua Dosen Pembimbing'),(14,'Disetujui Oleh Tim RMK'),(15,'Disetujui Oleh Kaprodi'),(20,'Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa'),(21,'Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1'),(22,'Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2'),(23,'Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Semua Dosen Pembimbing'),(24,'Menyetujui Hasil Akhir Seminar Proposal Tugas Akhir Oleh Kaprodi'),(30,'Menunggu Sidang Tugas Akhir'),(31,'Selesai Sidang Tugas Akhir'),(32,'Mahasiswa Dinyatakan Lulus');
+INSERT INTO `status_proposal` VALUES (10,'Pengajuan Oleh Mahasiswa'),(11,'Disetujui Dosen Pembimbing 1'),(12,'Disetujui Dosen Pembimbing 2'),(13,'Disetujui Oleh Semua Dosen Pembimbing'),(14,'Disetujui Oleh Tim RMK'),(15,'Disetujui Oleh Kaprodi'),(16,'Proses Melakukan Seminar'),(20,'Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa'),(21,'Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1'),(22,'Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2'),(23,'Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Semua Dosen Pembimbing'),(24,'Menyetujui Hasil Akhir Seminar Proposal Tugas Akhir Oleh Kaprodi'),(30,'Menunggu Sidang Tugas Akhir'),(31,'Selesai Sidang Tugas Akhir'),(32,'Mahasiswa Dinyatakan Lulus');
 /*!40000 ALTER TABLE `status_proposal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-14 12:18:04
+-- Dump completed on 2019-03-16 15:30:55
