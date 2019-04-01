@@ -33,9 +33,13 @@
       <p id="pesan"></p>
     </div>
     <div class="actions">
-      <div class="ui red basic cancel inverted button">
+      <div class="ui blue basic cancel inverted button">
         <i class="remove icon"></i>
         Tidak.
+      </div>
+      <div id="rejectButton" data-value="" class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        Tolak Proposal.
       </div>
       <div id="ubahButton" data-value="" class="ui green ok inverted button">
         <i class="checkmark icon"></i>
@@ -70,12 +74,25 @@
         var data = table.row( $(this).parents('tr') ).data();
         $('#pesan').html("Status saat ini adalah<h3 style='color:red'>"+data[5]+"</h3>");
         $('#ubahButton').attr("data-value",data[0]);
+        $('#rejectButton').attr("data-value",data[0]);
         $('.ui.basic.modal').modal('show');
     });
 
     $('#ubahButton').click(function(){
       $.ajax({
         url: "<?php echo base_url("verifikator/ubahStatusTA") ?>",
+        method: "POST",
+        data: {nrp: $(this).attr('data-value')}
+      }).done(function(){
+        setTimeout(function(){
+           location.reload();
+      }, 2000); 
+      });
+    });
+
+    $('#rejectButton').click(function(){
+      $.ajax({
+        url: "<?php echo base_url("verifikator/rejectStatusTA") ?>",
         method: "POST",
         data: {nrp: $(this).attr('data-value')}
       }).done(function(){

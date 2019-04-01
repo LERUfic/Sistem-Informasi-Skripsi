@@ -66,7 +66,7 @@ class Mahasiswa extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD'] === 'POST'){
 			$flag = $this->skripsi->getProposal($this->login_data['nrp']);
 			if(count($flag)==1){
-				if($flag[0]['idstat'] == 10 || $flag[0]['idstat'] == 11 || $flag[0]['idstat'] == 12){
+				if($flag[0]['idstat'] == 10 || $flag[0]['idstat'] == 11 || $flag[0]['idstat'] == 12 || $flag[0]['idstat'] == 110 || $flag[0]['idstat'] == 120 || $flag[0]['idstat'] == 130 || $flag[0]['idstat'] == 140 || $flag[0]['idstat'] == 150){
 					if (empty($_FILES['draftTA']['name'])) {
 						$path = $flag[0]['path'];
 					}
@@ -79,7 +79,7 @@ class Mahasiswa extends CI_Controller {
 						'dosbing1' => $this->input->post('dosbing1'),
 						'dosbing2' => $this->input->post('dosbing2'),
 						'rmk' => $this->input->post('rmk'),
-						'idstat' => $flag[0]['idstat'],
+						'idstat' => 10,
 						'path' => $path
 					);
 					$ret = $this->skripsi->updateProposal($this->login_data['nrp'],$send_array);	
@@ -132,6 +132,7 @@ class Mahasiswa extends CI_Controller {
 					'dosbing1' => $this->input->post('dosbing1'),
 					'dosbing2' => $this->input->post('dosbing2'),
 					'rmk' => $this->input->post('rmk'),
+					'nilai' => '0',
 					'path' => $path,
 					'idstat' => '10'
 				);

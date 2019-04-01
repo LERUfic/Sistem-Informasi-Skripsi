@@ -135,6 +135,58 @@ class Dosen extends CI_Controller {
 		}
 	}
 
+	public function rejectStatusTA(){
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$data = $this->skripsi->getProposal($this->input->post('nrp'));
+			$current_status = $data[0]['idstat'];
+			$myID = $this->login_data['nrp'];
+			
+			if($current_status == 10 || $current_status == 11 || $current_status == 12){
+				if($myID == $data[0]['dosbing1_nrp']){
+					$perubahan = '110';
+				}
+				elseif($myID == $data[0]['dosbing2_nrp']){
+					$perubahan = '120';
+				}
+				else{
+					$perubahan = 'TETAP';
+				}
+			}
+			elseif($current_status == 110){
+				if($myID == $data[0]['dosbing1_nrp']){
+					$perubahan = 'TETAP';
+				}
+				elseif($myID == $data[0]['dosbing2_nrp']){
+					$perubahan = '130';
+				}
+				else{
+					$perubahan = 'TETAP';
+				}	
+			}
+			elseif($current_status == 120){
+				if($myID == $data[0]['dosbing1_nrp']){
+					$perubahan = '130';
+				}
+				elseif($myID == $data[0]['dosbing2_nrp']){
+					$perubahan = 'TETAP';
+				}
+				else{
+					$perubahan = 'TETAP';
+				}	
+			}
+			else{
+				$perubahan = 'TETAP';
+			}
+
+			if($perubahan!='TETAP'){
+				$send_array = Array(
+					'idstat' => $perubahan
+				);
+				$ret = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array);
+			}
+		}
+	}
+
 	/* Seminar Controller */
 	public function jadwal()
 	{

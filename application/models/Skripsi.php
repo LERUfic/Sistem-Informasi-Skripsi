@@ -238,6 +238,28 @@ class Skripsi extends CI_Model {
 
         return $ret;
     }
+
+    public function getSidang($data){
+        $this->db->select("sidang.nrp,sidang.d_mulai,sidang.d_selesai");
+        $this->db->from('sidang');
+        $this->db->where('sidang.nrp',$data);
+        $ret = $this->db->get()->result_array();
+
+        return $ret;
+    }
+
+    public function sendSidang($data){
+        $this->db->trans_start();
+        $this->db->insert('sidang', $data);
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
 }
 
 /* End of file skripsi.php */

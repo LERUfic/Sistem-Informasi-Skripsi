@@ -93,14 +93,29 @@ class Kaprodi extends CI_Controller {
 					$perubahan = '15';
 				}
 			}
-			elseif ($current_status == 31){
+		}
+
+		if($current_status == 14){
+			$send_array = Array(
+				'idstat' => $perubahan
+			);
+			$ret = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array);
+		}
+	}
+
+	public function rejectStatusTA(){
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$data = $this->skripsi->getProposal($this->input->post('nrp'));
+			$current_status = $data[0]['idstat'];
+			$myRole = $this->login_data['role'];
+			if($current_status == 14){
 				if($myRole == 2){
-					$perubahan = '32';
-				} 
+					$perubahan = '150';
+				}
 			}
 		}
 
-		if($current_status == 14 || $current_status == 31){
+		if($current_status == 14){
 			$send_array = Array(
 				'idstat' => $perubahan
 			);
@@ -174,6 +189,82 @@ class Kaprodi extends CI_Controller {
 				'idstat' => 30
 			);
 			$res = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array2);
+		}
+	}
+
+	public function sidang()
+	{
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$this->data['title'] = "Submit Jadwal Sidang";
+			$this->load->view('kaprodi/headerkaprodi',$this->data);
+			return $this->load->view('kaprodi/sidang',$this->data);
+		}
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$flag1 = $this->skripsi->getProposal($this->input->post('nrp'));
+			$flag2 = $this->skripsi->getSeminar($this->input->post('nrp'));
+			$flag3 = $this->skripsi->getSidang($this->input->post('nrp'));
+			if(count($flag1)==1){
+				if($flag1[0]['idstat']==30 && $flag2[0]['idstat']==24){
+					if(count($flag3)==0){
+						$send_array = Array(
+							'nrp' => $this->input->post('nrp'),
+							'd_mulai' => $this->input->post('d_mulai'),
+							'd_selesai' => $this->input->post('d_selesai')
+						);
+						$res = $this->skripsi->sendSidang($send_array);
+
+						if($res){
+							$ret = "Berhasil Insert Jadwal Seminar";
+						}
+						else{
+							$ret = "Gagal Melakukan Insert";
+						}
+					}
+					else{
+						$ret = "User Sudah Memiliki Jadwal Sidang";
+					}
+				}
+				else{
+					$ret = "User Belum Melalui Alur Yang Benar";
+				}
+			}
+			else{
+				$ret = "User Belum Submit Proposal TA";
+			}
+			$this->data['title'] = "Result";
+			$this->data['msg'] = $ret;
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
+		}
+	}
+
+	public function nilai(){
+		if($_SERVER['REQUEST_METHOD'] === 'GET'){
+			$this->data['title'] = "Submit Nilai TA";
+			$this->load->view('kaprodi/headerkaprodi',$this->data);
+			return $this->load->view('kaprodi/nilai',$this->data);
+		}
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$data = $this->skripsi->getProposal($this->input->post('nrp'));
+			$current_status = $data[0]['idstat'];
+			$myRole = $this->login_data['role'];
+			if($current_status == 31){
+				if($myRole == 2){
+					$perubahan = '32';
+				}
+			}
+			$ret = "Gagal Update Nilai";
+			if($current_status == 31){
+				$send_array = Array(
+					'idstat' => $perubahan,
+					'nilai' => $this->input->post('nilai')
+				);
+				$ret = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array);
+			}
+			$this->data['title'] = "Result";
+			$this->data['msg'] = $ret;
+			$this->data['rdr'] = "beranda";
+			return $this->load->view('status',$this->data);
 		}
 	}
 }

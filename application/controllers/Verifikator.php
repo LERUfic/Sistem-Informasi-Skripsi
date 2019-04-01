@@ -125,6 +125,36 @@ class Verifikator extends CI_Controller {
 		}
 	}
 
+	public function rejectStatusTA(){
+		if($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$data = $this->skripsi->getProposal($this->input->post('nrp'));
+			$current_status = $data[0]['idstat'];
+			$myRole = $this->login_data['role'];
+			$myRMK = $this->skripsi->getRMKByNRP($this->login_data['nrp']);
+			$flag = 0;
+			for($i=0;$i<count($myRMK);$i++){
+				if($data[0]['rmk'] == $myRMK[$i]['idrmk']){
+					$flag = 1;
+					break;
+				}
+			}
+			if($flag){
+				if($current_status == 13){
+					if($myRole == 3){
+						$perubahan = '140';
+					}
+				}
+			}
+
+			if($current_status == 13){
+				$send_array = Array(
+					'idstat' => $perubahan
+				);
+				$ret = $this->skripsi->updateProposal($this->input->post('nrp'),$send_array);
+			}
+		}
+	}
+
 }
 
 /* End of file Verifikator.php */

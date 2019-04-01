@@ -10,6 +10,11 @@ Status:
 - [x] 14 = Disetujui Oleh Tim RMK
 - [x] 15 = Disetujui Oleh Kaprodi
 - [x] 16 = Proses Melakukan Seminar
+- [x] 110 = Ditolak Dosen Pembimbing 1
+- [x] 120 = Ditolak Dosen Pembimbing 2
+- [x] 130 = Ditolak Oleh Semua Dosen Pembimbing
+- [x] 140 = Ditolak Oleh Tim RMK
+- [x] 150 = Ditolak Oleh Kaprodi
 - [x] 20 = Pengajuan Jadwal Seminar Proposal Tugas Akhir Oleh Mahasiswa
 - [x] 21 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 1
 - [x] 22 = Menyetujui Jadwal Seminar Proposal Tugas Akhir Oleh Dosen Pembimbing 2
@@ -29,3 +34,9 @@ Target:
 Alur:
 ===
 Mahasiswa mendaftar -> mahasiswa mengajukan proposal TA -> dosbing 1 dan 2 mengkonfirmasi proposal -> tim rmk mengkonfirmasi proposal -> kaprodi mengkonfirmasi proposal -> mahasiswa melakukan seminar (mahasiswa mengajukan jadwal seminar -> dosbing 1 dan 2 mengkonfirmasi jadwal -> mahasiswa melakukan seminar -> kaprodi menyetujui bahwa mahasiswa sudah melakukan seminar) -> Mahasiswa menunggu sidang tugas akhir -> mahasiswa melakukan sidang ta -> mahasiswa selesai sidang TA -> verifikator rmk menyatakan mahasiswa telah melakukan sidang TA -> kaprodi menyatakan mahasiswa lulus
+
+Tambahan:
+===
+1. tambah reject
+2. kaprodi insert jadwal sidang
+3. kaprodi insert nilai
